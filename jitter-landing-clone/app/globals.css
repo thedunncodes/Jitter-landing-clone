@@ -2,12 +2,18 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #19171c;
+  --prim-color: #19171c;
+  --prim-color-alt: #fba6ec;
+  --sec-color: #f1f1f1;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-prim-alt: var(--prim-color-alt);
+  --color-prim: var(--prim-color);
+  --color-sec: var(--sec-color);
 }
 
 /* @media (prefers-color-scheme: dark) {

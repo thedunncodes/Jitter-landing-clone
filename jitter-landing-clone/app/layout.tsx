@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Jitter Landing Clone ·  A fast and simple motion design tool on the web",
@@ -13,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='antialiased'>
+      <body className={`${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

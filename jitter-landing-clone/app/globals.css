@@ -14,6 +14,7 @@
   --color-prim-alt: var(--prim-color-alt);
   --color-prim: var(--prim-color);
   --color-sec: var(--sec-color);
+  --font-inter: var(--font-inter);
 }
 
 /* @media (prefers-color-scheme: dark) {

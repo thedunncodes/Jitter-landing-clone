@@ -1,7 +1,12 @@
+import Header from "@/components/header/Header";
+
 export default function Home() {
   return (
-    <div>
-        Hello Jitter
-    </div>
+    <>
+      <Header />
+      <main>
+          Hello Jitter
+      </main>
+    </>
   );
 }

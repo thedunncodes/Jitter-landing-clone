@@ -15,6 +15,29 @@
   --color-prim: var(--prim-color);
   --color-sec: var(--sec-color);
   --font-inter: var(--font-inter);
+
+  --animate-pulse-grow: pulse-grow 400ms ease-in-out forwards;
+  --animate-pulse-in: pulse-grow 550ms ease-in;
+  --animate-pulse-shift: pulse-shift 600ms ease-in;
+  --animate-pulse-exit: pulse-exit 200ms ease-out;
+
+  @keyframes pulse-grow {
+      0% { transform: scale(1) }
+      70% { transform: scale(1.11) }
+      100% { transform: scale(1.08) }
+  }
+
+  @keyframes pulse-exit {
+    0% { transform: scale(1) }
+    70% { transform: scale(0.8) }
+    100% { transform: scale(0.9) }
+  }
+
+  @keyframes pulse-shift {
+    0% { margin: 0 0 0 0px; }
+    70% { margin: 0 -6px 0 15px }
+    100% { margin: 0 0 0 0px }
+  }
 }
 
 /* @media (prefers-color-scheme: dark) {

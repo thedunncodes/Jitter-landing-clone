@@ -61,11 +61,11 @@ export default function Header() {
                         </div>
                         {
                             <div aria-label='menu-btn-container' className='relative z-10 hidden lg:block' >
-                                    <HamBurger {...{ dark: true, mobile: false, setHideContent: sethideMenuBar, setScrollH }} /> 
+                                    <HamBurger {...{ dark: true, mobile: false, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} /> 
                             </div>
                         }
                         <div aria-label='mobile-menu-btn-container' className='lg:hidden' >
-                                <HamBurger {...{ toggle: getMenu, setToggle: setGetMenu, dark: false, mobile: true, setHideContent: sethideMenuBar, setScrollH }} />
+                                <HamBurger {...{ toggle: getMenu, setToggle: setGetMenu, dark: false, mobile: true, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} />
                         </div>
                     </div>
                 </div>

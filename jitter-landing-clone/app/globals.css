@@ -20,6 +20,9 @@
   --animate-pulse-in: pulse-grow 550ms ease-in;
   --animate-pulse-shift: pulse-shift 600ms ease-in;
   --animate-pulse-exit: pulse-exit 200ms ease-out;
+  --animate-pulseY-in: pulseY-in 700ms ease-in-out forwards;
+  --animate-pulseY-out: pulseY-out 700ms ease-in-out forwards;
+  --animate-fade-in: fade-in 1.3s ease-in-out forwards;
 
   @keyframes pulse-grow {
       0% { transform: scale(1) }
@@ -37,6 +40,22 @@
     0% { margin: 0 0 0 0px; }
     70% { margin: 0 -6px 0 15px }
     100% { margin: 0 0 0 0px }
+  }
+
+  @keyframes pulseY-in {
+    0% { transform: translateY(-20rem) }
+    70% { transform: translateY(1rem)}
+    100% { transform: translateY(0rem) }
+  }
+
+  @keyframes pulseY-out {
+    0% { transform: translateY(0rem) }
+    100% { transform: translateY(-20rem) }
+  }
+
+  @keyframes fade-in {
+    0% { transform: translateY(-20rem) }
+    100% { transform: translateY(0rem) }
   }
 }
 

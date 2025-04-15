@@ -55,7 +55,7 @@ export default function Header() {
                             </ul>
                         </nav>
                     </div>
-                    <div aria-label='login-btn' className='w-[40%] max-w-[10rem] lg lg:w-[30%] font-inter font-semibold' >
+                    <div aria-label='login-btn' className='w-[40%] max-w-[10rem] lg lg:w-[30%] xl:ml-[3%] font-inter font-semibold' >
                         <Link href={'#login'} className='block min-[375px]:ml-5'>
                             Log in
                         </Link>

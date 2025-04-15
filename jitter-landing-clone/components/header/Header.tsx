@@ -25,28 +25,28 @@ export default function Header() {
                     </div>
                     <div aria-label='nav-container' className='w-[50%] hidden lg:block' >
                         <nav className='w-full h-full '>
-                            <ul className='group/nav main-menu flex w-[90%] h-full gap-x-3 ' >
+                            <ul className='group/nav main-menu flex w-[90%] h-full gap-x-3' >
                                 <div aria-label='header-bg-wrapper' className='absolute w-full left-0 top-0 -z-10' >
-                                    <div className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto bg-background h-22 menu-expand ${!hideMenuBar? 'animate-pulseY-out' : 'animate-pulseY-in'} ${(hideMenuBar && (scrollH > 200))? 'border-b border-sec rounded-2xl shadow-xl' : 'border-transparent'} transition-all duration-300`} ></div>
+                                    <div className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto bg-background h-22 menu-expand ${!hideMenuBar? 'animate-pulseY-out' : 'animate-pulseY-in'} ${(hideMenuBar && (scrollH > 200))? 'border-b border-sec rounded-2xl shadow-xl' : 'border-transparent'} transition-all duration-700`} ></div>
                                 </div>
-                                <li className='group/product grow text-center font-inter current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
-                                    Product
-                                    <div className='absolute bg-background hidden group-hover/product:block w-full h-full mt-15 left-0' >
+                                <li className='group/product grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
+                                    <p className='font-inter' >Product</p>
+                                    <div className='absolute bg-transparent hidden group-hover/product:block w-full mt-2 pt-15 left-0' >
                                         <Products />
                                     </div>
                                 </li>
-                                <li className='grow text-center font-inter current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
-                                    Customers
+                                <li className='grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
+                                    <p className='font-inter ' >Customers</p>
                                     <div className='absolute bg-background hidden group-hover/product:block w-full h-full mt-15 left-0' >
                                     </div>
                                 </li>
                                 <li className='grow' >
-                                    <Link href={'#templates'} className='block text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
+                                    <Link href={'#templates'} className='block py-5 text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
                                         Templates
                                     </Link>
                                 </li>
                                 <li className='grow' >
-                                    <Link href={'#pricing'} className='block text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
+                                    <Link href={'#pricing'} className='block py-5 text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
                                         Pricing
                                     </Link>
                                 </li>

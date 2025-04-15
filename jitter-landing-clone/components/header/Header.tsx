@@ -32,13 +32,13 @@ export default function Header() {
                                 </div>
                                 <li className='group/product grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
                                     <p className='font-inter' >Product</p>
-                                    <div className='absolute bg-transparent hidden group-hover/product:block w-full h-auto mt-2 pt-15 left-0' >
+                                    <div className={`absolute bg-transparent hidden w-full h-auto mt-2 pt-15 left-0 ${hideMenuBar ? 'group-hover/product:block' : ''} `} >
                                         <Products />
                                     </div>
                                 </li>
                                 <li className='group/customers grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
                                     <p className='font-inter ' >Customers</p>
-                                    <div className='absolute bg-transparent hidden group-hover/customers:block w-full h-auto mt-2 pt-15 left-0' >
+                                    <div className={`absolute bg-transparent hidden w-full h-auto mt-2 pt-15 left-0 ${hideMenuBar ? 'group-hover/customers:block' : ''} `} >
                                         <Customers />
                                     </div>
                                 </li>

@@ -4,8 +4,9 @@
   --background: #ffffff;
   --foreground: #19171c;
   --prim-color: #19171c;
-  --prim-color-alt: #fba6ec;
+  --prim-color-alt: #b593ff;
   --sec-color: #f1f1f1;
+  --sec-color-blue: #00b2ff;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-prim-alt: var(--prim-color-alt);
   --color-prim: var(--prim-color);
   --color-sec: var(--sec-color);
+  --color-sec-blue: var(--sec-color-blue);
   --font-inter: var(--font-inter);
 
   --animate-pulse-grow: pulse-grow 400ms ease-in-out forwards;
@@ -22,7 +24,13 @@
   --animate-pulse-exit: pulse-exit 200ms ease-out;
   --animate-pulseY-in: pulseY-in 700ms ease-in-out forwards;
   --animate-pulseY-out: pulseY-out 700ms ease-in-out forwards;
+
   --animate-fade-in: fade-in 1.3s ease-in-out forwards;
+
+  --animate-bobb: bobb 400ms ease-in-out forwards;
+  --animate-btn-bobb: btn-bobb 400ms ease-in-out forwards;
+  --animate-pop-in: pop-in 350ms ease-in-out forwards;
+  --animate-static-pop-in: static-pop 350ms ease-in-out forwards;
 
   @keyframes pulse-grow {
       0% { transform: scale(1) }
@@ -57,6 +65,29 @@
     0% { transform: translateY(-20rem) }
     100% { transform: translateY(0rem) }
   }
+
+  @keyframes bobb {
+    0% { transform: scale(1); opacity: 1; }
+    70% { transform: scale(0.95); opacity: 1; }
+    100% { transform: scale(0.97); opacity: 1; }
+  }
+
+  @keyframes btn-bobb {
+    0% { transform: scale(1); opacity: 1; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes pop-in {
+    0% { transform: scale(0.97); opacity: 1; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes static-pop {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -75,7 +106,7 @@ body {
 
 .main-menu:has(.current-tab:hover) .menu-expand {
   width: 100%;
-  height: 85vh;
+  height: 87vh;
   border-bottom: 1px solid #f1f1f1;
   border-radius: 1rem;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);

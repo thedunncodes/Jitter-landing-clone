@@ -18,6 +18,8 @@
   --color-sec-blue: var(--sec-color-blue);
   --font-inter: var(--font-inter);
 
+  --breakpoint-xl-lg: 90rem;
+
   --animate-pulse-grow: pulse-grow 400ms ease-in-out forwards;
   --animate-pulse-in: pulse-grow 550ms ease-in;
   --animate-pulse-shift: pulse-shift 600ms ease-in;

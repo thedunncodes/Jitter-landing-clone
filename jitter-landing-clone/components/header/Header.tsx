@@ -4,6 +4,7 @@ import Link from 'next/link';
 import LogoSvg from '../svg/LogoSvg';
 import HamBurger from './HamBurger';
 import Products from './navTabs/Products';
+import Customers from './navTabs/Customers';
 
 export default function Header() {
     const [ getMenu, setGetMenu ]  = useState<boolean>(false);
@@ -31,13 +32,14 @@ export default function Header() {
                                 </div>
                                 <li className='group/product grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
                                     <p className='font-inter' >Product</p>
-                                    <div className='absolute bg-transparent hidden group-hover/product:block w-full mt-2 pt-15 left-0' >
+                                    <div className='absolute bg-transparent hidden group-hover/product:block w-full h-auto mt-2 pt-15 left-0' >
                                         <Products />
                                     </div>
                                 </li>
-                                <li className='grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
+                                <li className='group/customers grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
                                     <p className='font-inter ' >Customers</p>
-                                    <div className='absolute bg-background hidden group-hover/product:block w-full h-full mt-15 left-0' >
+                                    <div className='absolute bg-transparent hidden group-hover/customers:block w-full h-auto mt-2 pt-15 left-0' >
+                                        <Customers />
                                     </div>
                                 </li>
                                 <li className='grow' >
@@ -79,9 +81,6 @@ export default function Header() {
                     </div>
                 </div>
             </section>
-            {/* <div className='absolute w-full z-0' >
-                <div className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto bg-red-600 h-22 menu-expand ${!hideMenuBar? 'animate-pulseY-out' : '-tralate-y-0 animate-pulseY-in'} ${(hideMenuBar && (scrollH > 200))? 'border-b border-sec rounded-2xl  shadow-xl' : 'border-transparent'} transition-all duration-200`} ></div>
-            </div> */}
         </div>
     </header>
   )

@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 interface hamBurgerProps { 
-    toggle?: boolean;
+    toggle: boolean;
     setToggle?: Dispatch<SetStateAction<boolean>>;
     dark: boolean;
     setDark?: Dispatch<SetStateAction<boolean>>;
@@ -14,7 +14,10 @@ interface hamBurgerProps {
 export default function HamBurger(props: hamBurgerProps) {
     const { toggle, setToggle, dark, mobile, setHideContent, setScrollH , hideContent} = props;
     const [ hide, setHide ] = useState<boolean>(true);
-    const [ lastScrollTop, setLastScrollTop ] = useState<number>(0)
+    const [ lastScrollTop, setLastScrollTop ] = useState<number>(0);
+    const lastScrollRef = useRef(lastScrollTop);
+    const toggleRef = useRef(toggle);
+
     const handleMenu = () => {
         if (setToggle) setToggle(!toggle);
         if (!mobile) setHide(!hide);
@@ -22,31 +25,49 @@ export default function HamBurger(props: hamBurgerProps) {
     };
 
     useEffect(() => {
+        lastScrollRef.current = lastScrollTop
+    }, [lastScrollTop]);
+    useEffect(() => {
+        toggleRef.current = toggle
+    }, [toggle]);
+
+    useEffect(() => {
         function handleMenuScrollOutside() {
-            if (!mobile) {
+            console.log('toggle', toggleRef.current)
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       
-                  if (scrollTop > lastScrollTop){
+                  if (scrollTop > lastScrollRef.current){
                       setHide(false);
-                      setHideContent(false);
+                      if (toggleRef.current) {
+                        setHideContent(true);
+                      } else {
+                        console.log('Ass1')
+                        setHideContent(false)
+                      }
                       if (scrollTop > 110 ) setScrollH(scrollTop)
                   } else {
                       setHide(true);
-                      setHideContent(true);
+                      if (toggleRef.current) {
+                        setHideContent(true);
+                      } else {
+                        console.log('Ass2')
+                        setHideContent(true)
+                      }
                   }
-                  setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
-            }
-            
+                  setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);            
         }
     
-        window.addEventListener("scroll", handleMenuScrollOutside)
-      });
+        window.addEventListener("scroll", handleMenuScrollOutside);
+        return () => {
+            window.addEventListener("scroll", handleMenuScrollOutside);
+        }
+      }, []);
 
     useEffect(() => {
         if (lastScrollTop < 200) setScrollH(lastScrollTop)
     }, [lastScrollTop, setScrollH])
-    console.log(hide)
-  return (
+
+    return (
     <div aria-label="hamburger-container" className={`${(hide && !mobile ) ? 'w-0 -translate-x-14' : 'w-14 -translate-x-0  animate-pulse-shift' } flex items-center justify-center transition-all duration-400 delay-200 ease-out`} >
         <button aria-label="hamburger" onClick={handleMenu} className={`${(hide && !mobile) ? 'scale-0 animate-pulse-exit' : 'w-fit py-3 px-2.5 md:py-3 md:px-3 animate-pulse-in' } h-full ${ dark ? 'bg-prim' : `${(hideContent && !toggle) ? 'bg-white' : (toggle ? 'bg-prim' : 'bg-sec')}` } overflow-hidden transition-all duration-400 delay-200 hover:animate-pulse-grow flex item-center justify-center rounded-full cursor-pointer`} >
             <div aria-label="hamburger-wrapper" className={`group w-fit flex flex-col justify-between relative ${(hide && !mobile) ? '[&>*]:w-0' : '[&>*]:w-7'} [&>*]:py-0 cursor-pointer transition-all delay-300`} >

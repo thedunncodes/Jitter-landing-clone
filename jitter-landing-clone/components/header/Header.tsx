@@ -33,7 +33,7 @@ export default function Header() {
         
         window.addEventListener('resize', setDeviceWidth);
     }, [])
-    console.log('mfs', hideMenuBar, scrollH)
+
     return (
     <header className='z-60 h-25 sticky top-0 pt-11 animate-fade-in' >
         <div aria-label='header-container' className='relative flex flex-wrap w-full just-fy-center' >
@@ -80,33 +80,40 @@ export default function Header() {
                             Log in
                         </Link>
                     </div>
-                    <div aria-label='nav-container' className='absolute lg:hidden' >
-                        <nav className='w-0 h-0 main-menu '>
+                    <div aria-label='nav-container' className={`absolute lg:hidden ${getMenu ? 'w-[95%] sm:w-[70%] h-[80vh]' : ''} top-0 -z-10 bg-red-500`} >
+                        <nav className='w-full h-full main-menu '>
                             <div aria-label='header-bg-wrapper' id='mobile-menu' className='fixed top-0 left-0 w-full bg-background -z-10 flex justify-center' >
                                 <div id='mobile-menu-content' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto absolute bg-background h-22 ${(!hideMenuBar)? 'animate-pulseY-outw' : 'animate-pulseY-inw'} ${((scrollH > 110) && !getMenu  )? 'shadow-xl' : `${ getMenu? 'shadow-xl' : '' }` }  border-transparent border-b border-sec rounded-2xl transition-all duration-700`} ></div>
                             </div>
-                            <ul className={`absolute ${getMenu? 'block' : 'hidden'} bg-transparent w-full h-full mt-2 pt-15 left-0`} >
-                                <li className='group/product grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
-                                    <Link href={'#product'} className='font-inter' >
-                                        Product
+                            <div aria-label='mobile-nav-content' className={`absolute ${getMenu? 'block' : 'hidden'} w-full h-full bg-transparent`} >
+                                <ul className={`  w-[95%] m-auto text-[2.7rem] leading-11  h-full mt-2 pt-25 left-0`} >
+                                    <li style={{ animationDelay: '350ms' }} className='grow animate-bounceY-in font-semibold' >
+                                        <Link style={{ animationDelay: '350ms' }} href={'#product'} className='opacity-0 animate-static-pop-in' >
+                                            Product
+                                        </Link>
+                                    </li>
+                                    <li style={{ animationDelay: '300ms' }} className='grow animate-bounceY-in font-semibold' >
+                                        <Link style={{ animationDelay: '300ms' }} href={'#customers'} className='opacity-0 animate-static-pop-in' >
+                                            Customers
+                                        </Link>
+                                    </li>
+                                    <li style={{ animationDelay: '250ms' }} className='grow animate-bounceY-in' >
+                                        <Link style={{ animationDelay: '250ms' }} href={'#templates'} className='block opacity-0 animate-static-pop-in font-semibold' >
+                                            Templates
+                                        </Link>
+                                    </li>
+                                    <li style={{ animationDelay: '200ms' }} className='grow animate-bounceY-in' >
+                                        <Link style={{ animationDelay: '200ms' }} href={'#pricing'} className='block opacity-0 animate-static-pop-in font-semibold' >
+                                            Pricing
+                                        </Link>
+                                    </li>
+                                </ul>
+                                <div aria-label="btn-container" className="w-full -ranslate-y-90 flex justify-center" >
+                                    <Link style={{ animationDelay: '300ms' }} href={'#whatsnew'} className="w-[9rem] py-2.5 opacity-0 translate-y-2 text-base font-bold animate-bounceY-in-btn text-center bg-prim text-white rounded-full transition-all duration-300 ease-in-out" >
+                                        Sign up
                                     </Link>
-                                </li>
-                                <li className='group/customers grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
-                                    <Link href={'#customers'} className='font-inter ' >
-                                        Customers
-                                    </Link>
-                                </li>
-                                <li className='grow' >
-                                    <Link href={'#templates'} className='block py-5 text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
-                                        Templates
-                                    </Link>
-                                </li>
-                                <li className='grow' >
-                                    <Link href={'#pricing'} className='block py-5 text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
-                                        Pricing
-                                    </Link>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </nav>
                     </div>
                 </div>

@@ -33,7 +33,6 @@ export default function HamBurger(props: hamBurgerProps) {
 
     useEffect(() => {
         function handleMenuScrollOutside() {
-            console.log('toggle', toggleRef.current)
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       
                   if (scrollTop > lastScrollRef.current){
@@ -41,7 +40,6 @@ export default function HamBurger(props: hamBurgerProps) {
                       if (toggleRef.current) {
                         setHideContent(true);
                       } else {
-                        console.log('Ass1')
                         setHideContent(false)
                       }
                       if (scrollTop > 110 ) setScrollH(scrollTop)
@@ -50,7 +48,6 @@ export default function HamBurger(props: hamBurgerProps) {
                       if (toggleRef.current) {
                         setHideContent(true);
                       } else {
-                        console.log('Ass2')
                         setHideContent(true)
                       }
                   }

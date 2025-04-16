@@ -115,7 +115,7 @@ export default function Products() {
                         </li>
                     </ul>
                     <div aria-label="btn-container" className="w-full flex hover:animate-pulse-grow hover:scale-103 transition-all duration-300 ease-in-out" >
-                        <Link href={'#whatsnew'} style={{ animationDelay: '800ms' }} className="w-[14rem] py-2.5 opacity-0 text-lg bg-sec rounded-full animate-bobb animate-btn-bob" >
+                        <Link href={'#whatsnew'} style={{ animationDelay: '800ms' }} className="w-[14rem] text-center py-2.5 opacity-0 text-lg bg-sec rounded-full animate-bobb animate-btn-bob" >
                             See whats&apos;s new&nbsp;
                             <ArrowRight className="inline w-4" />
                         </Link>

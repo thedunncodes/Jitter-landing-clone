@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LogoSvg from '../svg/LogoSvg';
 import HamBurger from './HamBurger';
@@ -10,14 +10,34 @@ export default function Header() {
     const [ getMenu, setGetMenu ]  = useState<boolean>(false);
     const [ hideMenuBar, sethideMenuBar ] = useState<boolean>(true);
     const [ scrollH, setScrollH ] = useState<number>(0);
+    const [ width, setWidth ] = useState<number>(0);
 
+    useEffect(() => {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileContent = document.getElementById('mobile-menu-content');
+        if (getMenu) {
+            mobileMenu?.classList.add('mobile-menu');
+            mobileContent?.classList.add('mobile-menu-content');
+            if (!hideMenuBar) sethideMenuBar(true);
+        } else {
+            mobileMenu?.classList.remove('mobile-menu');
+            if (!hideMenuBar) sethideMenuBar(false);
+            mobileContent?.classList.remove('mobile-menu-content');
+        }
+        console.log(mobileMenu, mobileContent, getMenu)
+    }, [getMenu, hideMenuBar])
 
-  return (
+    useEffect(() => {
+        setWidth(window.innerWidth)
+        const setDeviceWidth = () => setWidth(window.innerWidth);
+        
+        window.addEventListener('resize', setDeviceWidth);
+    }, [])
+    console.log('mfs', hideMenuBar, scrollH)
+    return (
     <header className='z-60 h-25 sticky top-0 pt-11 animate-fade-in' >
         <div aria-label='header-container' className='relative flex flex-wrap w-full just-fy-center' >
-            <section aria-label='header-content' className={`absolute w-full ${!hideMenuBar? 'animate-pulseY-out' : '-tralate-y-0 animate-pulseY-in'}`} >
-                {/*  */}
-                {/* ${(hideMenuBar && (scrollH > 200))? 'border-b border-sec rounded-2xl  shadow-xl' : 'border-transparent'} */}
+            <section aria-label='header-content' className={`absolute w-full ${(!hideMenuBar)? 'animate-pulseY-out' : 'animate-pulseY-in'} `} >
                 <div aria-label='content-wrapper' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] bg-backround  flex flex-wrap m-auto justify-between lg:justify-normal items-center h-22 transition-all duration-200`} >
                     <div aria-label='logo-container' className='w-[40%] md:w-[20%] sm:ml-2 lg:ml-0 max-w-[45rem] flex justify-center' >
                         <Link href={'/'} >
@@ -60,6 +80,35 @@ export default function Header() {
                             Log in
                         </Link>
                     </div>
+                    <div aria-label='nav-container' className='absolute lg:hidden' >
+                        <nav className='w-0 h-0 main-menu '>
+                            <div aria-label='header-bg-wrapper' id='mobile-menu' className='fixed top-0 left-0 w-full bg-background -z-10 flex justify-center' >
+                                <div id='mobile-menu-content' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto absolute bg-background h-22 ${(!hideMenuBar)? 'animate-pulseY-outw' : 'animate-pulseY-inw'} ${((scrollH > 110) && !getMenu  )? 'shadow-xl' : `${ getMenu? 'shadow-xl' : '' }` }  border-transparent border-b border-sec rounded-2xl transition-all duration-700`} ></div>
+                            </div>
+                            <ul className={`absolute ${getMenu? 'block' : 'hidden'} bg-transparent w-full h-full mt-2 pt-15 left-0`} >
+                                <li className='group/product grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
+                                    <Link href={'#product'} className='font-inter' >
+                                        Product
+                                    </Link>
+                                </li>
+                                <li className='group/customers grow py-5 text-center current-tab group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300 font-semibold' >
+                                    <Link href={'#customers'} className='font-inter ' >
+                                        Customers
+                                    </Link>
+                                </li>
+                                <li className='grow' >
+                                    <Link href={'#templates'} className='block py-5 text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
+                                        Templates
+                                    </Link>
+                                </li>
+                                <li className='grow' >
+                                    <Link href={'#pricing'} className='block py-5 text-center font-inter font-semibold group-hover/nav:opacity-40 hover:opacity-100 transition-all duration-300' >
+                                        Pricing
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </section>
             <section aria-label='header-menu' className='w-full' >
@@ -71,13 +120,19 @@ export default function Header() {
                             </Link>
                         </div>
                         {
-                            <div aria-label='menu-btn-container' className='relative z-10 hidden lg:block' >
-                                    <HamBurger {...{ dark: true, mobile: false, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} /> 
-                            </div>
+                            (width > 1024) && (
+                                <div aria-label='menu-btn-container' className='relative z-10 hidden lg:block' >
+                                    <HamBurger {...{ toggle: false, dark: true, mobile: false, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} /> 
+                                </div>
+                            )
                         }
-                        <div aria-label='mobile-menu-btn-container' className='lg:hidden' >
-                                <HamBurger {...{ toggle: getMenu, setToggle: setGetMenu, dark: false, mobile: true, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} />
-                        </div>
+                        {
+                            (width < 1024) && (
+                                <div aria-label='mobile-menu-btn-container' className='lg:hidden' >
+                                        <HamBurger {...{ toggle: getMenu, setToggle: setGetMenu, dark: false, mobile: true, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} />
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </section>

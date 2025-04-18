@@ -24,7 +24,7 @@ export default function Header() {
             if (!hideMenuBar) sethideMenuBar(false);
             mobileContent?.classList.remove('mobile-menu-content');
         }
-        console.log(mobileMenu, mobileContent, getMenu)
+        // console.log(mobileMenu, mobileContent, getMenu)
     }, [getMenu, hideMenuBar])
 
     useEffect(() => {

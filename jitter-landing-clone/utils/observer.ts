@@ -7,8 +7,6 @@ const options = {
 function observerCallFn (className: string) {
     const observerCallback: IntersectionObserverCallback = (entries) => {
     entries.forEach((entry) => {
-        const currentX = entry.boundingClientRect.x;
-        console.log(currentX)
         if (entry.isIntersecting){
             entry.target.classList.add(className);
         } else entry.target.classList.remove(className);

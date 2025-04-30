@@ -72,7 +72,7 @@ export default function HamBurger(props: hamBurgerProps) {
                     <span className={`block w-[90%] ${ dark ? 'bg-white' : `${toggle ? 'bg-white' : 'bg-prim'}` } h-1 rounded-md top-[0.645rem] ${toggle? "w-full absolute rotate-[-135deg]" : ""}  transition-all duration-500`} ></span>
                 </div>
                 <div aria-label="line-3" className={`${(hide && !mobile) ? 'h-0' : 'h-2'} flex justify-end items-center transition-all delay-200`} >
-                    <span className={`block w-[70%] ${ dark ? 'bg-white' : `${toggle ? 'bg-white' : 'bg-prim'}` } h-1 rounded-md z-10 ${toggle? "w-full -translate-x-4 opacity-0" : ""} transition-all duration-300`} ></span>
+                    <span className={`block w-[70%] ${ dark ? 'bg-white' : `${toggle ? 'bg-white' : 'bg-prim'}` } h-1 rounded-md z-10 ${toggle? "w-full -translate-x-7 opacity-0" : ""} transition-all duration-400 ease-out`} ></span>
                 </div>
                 <div aria-label="line-3" className={`${(hide && !mobile) ? 'h-0' : 'h-2'} flex justify-end items-center transition-all delay-200`} >
                     <span className={`block w-[45%] ${ dark ? 'bg-white' : `${toggle ? 'bg-white' : 'bg-prim'}` } h-1 rounded-md bottom-[0.645rem] ${toggle? "w-full absolute rotate-[135deg]" : ""} transition-all duration-500`} ></span>

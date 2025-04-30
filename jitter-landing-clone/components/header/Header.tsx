@@ -39,7 +39,7 @@ export default function Header() {
         <div aria-label='header-container' className='relative flex flex-wrap w-full just-fy-center' >
             <section aria-label='header-content' className={`absolute w-full ${(!hideMenuBar)? 'animate-pulseY-out' : 'animate-pulseY-in'} `} >
                 <div aria-label='content-wrapper' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] bg-backround  flex flex-wrap m-auto justify-between lg:justify-normal items-center h-22 transition-all duration-200`} >
-                    <div aria-label='logo-container' className='w-[40%] md:w-[20%] sm:ml-2 lg:ml-0 max-w-[45rem] flex justify-center' >
+                    <div aria-label='logo-container' className='w-[40%] md:w-[15%] sm:ml-2 lg:ml-0 max-w-[45rem] flex justify-center' >
                         <Link href={'/'} >
                             <LogoSvg /> 
                         </Link>
@@ -75,7 +75,7 @@ export default function Header() {
                             </ul>
                         </nav>
                     </div>
-                    <div aria-label='login-btn' className='w-[40%] max-w-[10rem] lg lg:w-[30%] xl:ml-[3%] font-inter font-semibold' >
+                    <div aria-label='login-btn' className='w-[40%] sm:max-w-[10rem] lg:max-w-full  lg:w-[35%]  xl:pl-[3%] flex justify-center sm:pr-[10%] md:pr-[15%] 2xl:pr-[5%] flex-grow font-inter font-semibold' >
                         <Link href={'#login'} className='block min-[375px]:ml-5'>
                             Log in
                         </Link>
@@ -119,9 +119,9 @@ export default function Header() {
                 </div>
             </section>
             <section aria-label='header-menu' className='w-full' >
-                <div aria-label='menu-container' className='w-[90%] md:w-[65%] lg:w-[80%] xl:w-[75%] m-auto flex justify-end items-center h-22' >
+                <div aria-label='menu-container' className='w-[90%] md:w-[65%] lg:w-[80%] xl:w-[76.3%] xl:pr-[3%] m-auto flex justify-end items-center h-22' >
                     <div aria-label='menu-wrapper' className='w-fit flex items-center' >
-                        <div aria-label='cta-container' className='w-fit relative z-20 hidden lg:block h-full flex justify-center items-center font-bold text-lg text-white mr-5' >
+                        <div aria-label='cta-container' className={`w-fit relative z-20 hidden lg:block h-full flex justify-center items-center font-bold text-lg text-white ${!hideMenuBar? 'mr-5' : ''} transition-all duration-300`} >
                             <Link href={'#try'} className='block w-fit h-fit bg-prim px-7 py-3 rounded-full hover:animate-pulse-grow' >
                                 Try for free
                             </Link>

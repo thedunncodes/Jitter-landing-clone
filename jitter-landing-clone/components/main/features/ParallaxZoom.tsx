@@ -1,15 +1,30 @@
+import { useScroll, useTransform, motion} from 'framer-motion';
 import WbEndLeft from '@/components/svg/WbEndLeft';
 import WbEndRight from '@/components/svg/WbEndRight';
 import WbMiddleLeft from '@/components/svg/WbMiddleLeft';
 import WbMiddleRight from '@/components/svg/WbMiddleRight';
 import WbTopRight from '@/components/svg/WbTopRight';
-import React from 'react';
+import { useRef } from 'react';
+import MovingMarker from './MovingMarker';
 
 export default function ParallaxZoom() {
+    const wbRef = useRef<HTMLDivElement>(null);
+    const timeBackgroundRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ['start start', 'end end']
+
+    })
+
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 4]);
+    console.log('Progress', scrollYProgress)
+
     return (
-        <section aria-label='parallax-zoom-container' >
-            <div aria-label='zoom-wrapper' className='w-full h-full' >
-                <div aria-label='whiteboard-container' className='' >
+        <section aria-label='parallax-zoom-container' ref={containerRef} className='h-[300dvh] w-full relative' >
+            <div aria-label='zoom-wrapper' className='w-full sticky overflow-hidden top-0 border  h-[100dvh]  z-10 ' >
+                <motion.div style={{scale}} aria-label='whiteboard-container' ref={wbRef} className='relative w-[70%] m-auto' >
                     <div aria-label='whiteboard-wrapper' className='w-full h-full shadow-3xl' >
                         <div aria-label='whiteboard-top' className='w-full h-fit' >
                             <div aria-label='whiteboard-top-wrapper' className='flex flex-wrap bg-black justify-between' >
@@ -43,17 +58,24 @@ export default function ParallaxZoom() {
                                     <WbEndLeft {...{className : 'w-full h-full '}} />
                                 </div>
                                 <div className='w-[87%] grow fl relative' >
-                                    <div aria-label='whiteboard-end-marker' className='absolute hidden' >
-                                        marker
+                                    <div aria-label='whiteboard-end-marker' className='absolute left-0 top-0 w-full h-full' >
+                                        <div aria-label='marker-wrapper' className='w-full bsg-slate-800 h-full' >
+                                            <MovingMarker {...{ wbRef, timeBgRef: timeBackgroundRef }} />
+                                        </div>
                                     </div>
-                                    <div aria-label='whiteboard-end-content2' >
+                                    <div aria-label='whiteboard-end-content2' ref={timeBackgroundRef} >
                                         <WbEndRight {...{className : 'w-full ml-[0.5px] h-full '}} />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div aria-label='horizontal-scroll-container' className='absolute w-full h-full bg-prim-alt' >
+                        <div aria-label='horizontal-scroll-wrapper' >
+
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -6,11 +6,14 @@ import WbMiddleRight from '@/components/svg/WbMiddleRight';
 import WbTopRight from '@/components/svg/WbTopRight';
 import { useRef } from 'react';
 import MovingMarker from './MovingMarker';
+import GetViewportWidth from '@/hooks/viewportWidth';
 
 export default function ParallaxZoom() {
     const wbRef = useRef<HTMLDivElement>(null);
     const timeBackgroundRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const [ vpWidth ] = GetViewportWidth() || 1024;
+
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -19,12 +22,13 @@ export default function ParallaxZoom() {
     })
 
     const scale = useTransform(scrollYProgress, [0, 1], [1, 4]);
-    console.log('Progress', scrollYProgress)
+    console.log('Progress', vpWidth);
+    
 
     return (
-        <section aria-label='parallax-zoom-container' ref={containerRef} className='h-[300dvh] w-full relative' >
+        <section aria-label='parallax-zoom-container' ref={containerRef} className={`${(vpWidth >= 1024) ? 'h-[300dvh]' : 'h-fit'} w-full relative`} >
             <div aria-label='zoom-wrapper' className='w-full sticky overflow-hidden top-0 border  h-[100dvh]  z-10 ' >
-                <motion.div style={{scale}} aria-label='whiteboard-container' ref={wbRef} className='relative w-[70%] m-auto' >
+                <motion.div style={{scale: ((vpWidth >= 1024) ? scale : undefined )}} aria-label='whiteboard-container' ref={wbRef} className='relative w-[70%] m-auto' >
                     <div aria-label='whiteboard-wrapper' className='w-full h-full shadow-3xl' >
                         <div aria-label='whiteboard-top' className='w-full h-fit' >
                             <div aria-label='whiteboard-top-wrapper' className='flex flex-wrap bg-black justify-between' >
@@ -72,7 +76,7 @@ export default function ParallaxZoom() {
                     </div>
                     <div aria-label='horizontal-scroll-container' className='absolute w-full h-full bg-prim-alt' >
                         <div aria-label='horizontal-scroll-wrapper' >
-
+                            
                         </div>
                     </div>
                 </motion.div>

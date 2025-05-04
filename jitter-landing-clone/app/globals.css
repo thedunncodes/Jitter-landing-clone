@@ -5,6 +5,7 @@
   --foreground: #19171c;
   --prim-color: #19171c;
   --prim-color-alt: #b593ff;
+  --prim-color-alt-dark: #7A40ED;
   --sec-color: #f1f1f1;
   --sec-color-blue: #00b2ff;
 }
@@ -13,6 +14,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-prim-alt: var(--prim-color-alt);
+  --color-prim-alt-dark: var(--prim-color-alt-dark);
   --color-prim: var(--prim-color);
   --color-sec: var(--sec-color);
   --color-sec-blue: var(--sec-color-blue);

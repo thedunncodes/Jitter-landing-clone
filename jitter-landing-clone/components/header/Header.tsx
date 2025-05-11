@@ -24,7 +24,7 @@ export default function Header() {
             if (!hideMenuBar) sethideMenuBar(false);
             mobileContent?.classList.remove('mobile-menu-content');
         }
-        // console.log(mobileMenu, mobileContent, getMenu)
+
     }, [getMenu, hideMenuBar])
 
     useEffect(() => {
@@ -35,10 +35,10 @@ export default function Header() {
     }, [])
 
     return (
-    <header className='z-60 h-25 sticky top-0 pt-11 animate-fade-in' >
-        <div aria-label='header-container' className='relative flex flex-wrap w-full just-fy-center' >
+    <header className='z-60 h-0 sticky top-0 pt-11 animate-fade-in' >
+        <div aria-label='header-container' className='relative flex flex-wrap w-full h-0 just-fy-center' >
             <section aria-label='header-content' className={`absolute w-full ${(!hideMenuBar)? 'animate-pulseY-out' : 'animate-pulseY-in'} `} >
-                <div aria-label='content-wrapper' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] bg-backround  flex flex-wrap m-auto justify-between lg:justify-normal items-center h-22 transition-all duration-200`} >
+                <div aria-label='content-wrapper' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] flex flex-wrap m-auto justify-between lg:justify-normal items-center h-22 transition-all duration-200`} >
                     <div aria-label='logo-container' className='w-[40%] md:w-[15%] sm:ml-2 lg:ml-0 max-w-[45rem] flex justify-center' >
                         <Link href={'/'} >
                             <LogoSvg /> 
@@ -80,10 +80,10 @@ export default function Header() {
                             Log in
                         </Link>
                     </div>
-                    <div aria-label='nav-container' className={`absolute lg:hidden ${getMenu ? 'w-[95%] sm:w-[70%] h-[80vh]' : ''} top-0 -z-10 bg-red-500`} >
+                    <div aria-label='mobile-nav-container' className={`absolute lg:hidden ${getMenu ? 'w-[95%] sm:w-[70%] h-[80vh]' : ''} top-0`} >
                         <nav className='w-full h-full main-menu '>
-                            <div aria-label='header-bg-wrapper' id='mobile-menu' className='fixed top-0 left-0 w-full bg-background -z-10 flex justify-center' >
-                                <div id='mobile-menu-content' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto absolute bg-background h-22 ${(!hideMenuBar)? 'animate-pulseY-outw' : 'animate-pulseY-inw'} ${((scrollH > 110) && !getMenu  )? 'shadow-xl' : `${ getMenu? 'shadow-xl' : '' }` }  border-transparent border-b border-sec rounded-2xl transition-all duration-700`} ></div>
+                            <div aria-label='header-bg-wrapper' id='mobile-menu' className='fixed top-0 left-0 w-full bg-background flex -z-1 justify-center transition-all duration-700' >
+                                <div id='mobile-menu-content' className={`w-[95%] md:w-[70%] lg:w-[80%] xl:w-[75%] m-auto absolute bg-background h-22 ${((scrollH > 110) && !getMenu  )? 'shadow-xl' : `${ getMenu? 'shadow-xl' : '' }` }  border-transparent border-b border-sec rounded-2xl transition-all duration-700`} ></div>
                             </div>
                             <div aria-label='mobile-nav-content' className={`absolute ${getMenu? 'block' : 'hidden'} w-full h-full bg-transparent`} >
                                 <ul className={`  w-[95%] m-auto text-[2.7rem] leading-11  h-full mt-2 pt-25 left-0`} >
@@ -108,8 +108,8 @@ export default function Header() {
                                         </Link>
                                     </li>
                                 </ul>
-                                <div aria-label="btn-container" className="w-full -ranslate-y-90 flex justify-center" >
-                                    <Link style={{ animationDelay: '300ms' }} href={'#whatsnew'} className="w-[9rem] py-2.5 opacity-0 translate-y-2 text-base font-bold animate-bounceY-in-btn text-center bg-prim text-white rounded-full transition-all duration-300 ease-in-out" >
+                                <div aria-label="btn-container" className="w-full flex justify-center" >
+                                    <Link style={{ animationDelay: '300ms' }} href={'#whatsnew'} className="w-[9rem] -translate-y-10 py-2.5 opacity-0 text-base font-bold animate-bounceY-in-btn text-center bg-prim text-white rounded-full transition-all duration-300 ease-in-out" >
                                         Sign up
                                     </Link>
                                 </div>
@@ -118,9 +118,9 @@ export default function Header() {
                     </div>
                 </div>
             </section>
-            <section aria-label='header-menu' className='w-full' >
-                <div aria-label='menu-container' className='w-[90%] md:w-[65%] lg:w-[80%] xl:w-[76.3%] xl:pr-[3%] m-auto flex justify-end items-center h-22' >
-                    <div aria-label='menu-wrapper' className='w-fit flex items-center' >
+            <section aria-label='header-menu' className='w-full h-0' >
+                <div aria-label='menu-container' className='w-[90%] md:w-[65%] lg:w-[80%] xl:w-[76.3%] xl:pr-[3%] m-auto flex justify-end items-center h-0' >
+                    <div aria-label='menu-wrapper' className='w-fit translate-y-11 flex items-center' >
                         <div aria-label='cta-container' className={`w-fit relative z-20 hidden lg:block h-full flex justify-center items-center font-bold text-lg text-white ${!hideMenuBar? 'mr-5' : ''} transition-all duration-300`} >
                             <Link href={'#try'} className='block w-fit h-fit bg-prim px-7 py-3 rounded-full hover:animate-pulse-grow' >
                                 Try for free

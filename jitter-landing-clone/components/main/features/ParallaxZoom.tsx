@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import Image from 'next/image';
 import { useScroll, useTransform, motion} from 'framer-motion';
 import WbEndLeft from '@/components/svg/WbEndLeft';
 import WbEndRight from '@/components/svg/WbEndRight';
@@ -7,7 +6,7 @@ import WbMiddleLeft from '@/components/svg/WbMiddleLeft';
 import WbMiddleRight from '@/components/svg/WbMiddleRight';
 import WbTopRight from '@/components/svg/WbTopRight';
 import MovingMarker from './MovingMarker';
-import GetViewportWidth from '@/hooks/viewportWidth';
+import GetViewport from '@/hooks/viewportSize';
 import SqrEdgeFrame from '../frames/SqrEdgeFrame';
 import HorizontalScroll from './HorizontalScroll';
 
@@ -15,7 +14,7 @@ export default function ParallaxZoom() {
     const wbRef = useRef<HTMLDivElement>(null);
     const timeBackgroundRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [ vpWidth ] = GetViewportWidth() || 1024;
+    const [ vpWidth ] = GetViewport() || 1024;
 
 
     const { scrollYProgress } = useScroll({
@@ -26,7 +25,6 @@ export default function ParallaxZoom() {
 
     const containerScale = useTransform(scrollYProgress, [0, 0.5], [1, 4]);
     const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
-    const mainContentScale = useTransform(scrollYProgress, [.2, 0.5], ["0%", "100%"]);
     const containerY = useTransform(scrollYProgress, [0, 0.5], ["0%", "30%"]);
     const tslUp = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
     const tslDown = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
@@ -41,8 +39,8 @@ export default function ParallaxZoom() {
     
 
     return (
-        <section aria-label='parallax-zoom-container' ref={containerRef} className={`${(vpWidth >= 1024) ? 'min-h-[300dvh]' : 'h-fit'} w-full relative border border-cyan-800 `} >
-            <motion.div aria-label='zoom-wrapper' style={{ borderEndEndRadius: containerBorder, borderEndStartRadius: containerBorder }} className='w-full sticky overflow-hidden top-0 flex justify-center items-center border py-[3%] h-[100dvh]  z-5 ' >
+        <section aria-label='parallax-zoom-container' ref={containerRef} className={`${(vpWidth >= 1024) ? 'min-h-[600dvh]' : 'h-fit'} w-full relative border border-cyan-800 `} >
+            <motion.div aria-label='zoom-wrapper' style={{ borderEndEndRadius: containerBorder, borderEndStartRadius: containerBorder }} className='w-full sticky overflow-hidden top-0 flex justify-center items-center border py-[3%] h-[100dvh]' >
                 <motion.div style={{scale: ((vpWidth >= 1024) ? containerScale : undefined ), y: containerY}} aria-label='whiteboard-container' ref={wbRef} className='w-[70%] m-auto overflow-hidd en' >
                     <div aria-label='whiteboard-wrapper' className='w-full h-full shadow-3xl' >
                         <div aria-label='whiteboard-top' className='w-full h-fit' >
@@ -71,7 +69,7 @@ export default function ParallaxZoom() {
                                             </video>
                                         </SqrEdgeFrame>
                                     </div>
-                                    <motion.div aria-label='horizontal-scroll-container' style={{y: undefined}} className='relative h-full overdflow-hidden w-full bsorder-2 border-prim-alt-dark scale-w30 z-10' >
+                                    <motion.div aria-label='horizontal-scroll-container' style={{y: undefined}} className='relative h-full overdflow-hidden w-full bsorder-2 border-prim-alt-dark' >
                                         <motion.div aria-label='horizontal-scroll-container' style={{scale: ((vpWidth >= 1024) ? contentScale : undefined )}} className='sticky top-0 w-fit h-full bg-redd-600 flex justify-center items-center' >
                                             <div aria-label='horizontal-scroll-wrapper' className='w-[70%] grid grid-cols-3 grid-rows-3' >
                                                 <motion.div aria-label='scroll-bg-content1' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >

@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from "react"
+import { RefObject, useEffect, useState } from "react"
 
 interface MovingMarkerProps {
     wbRef: RefObject<HTMLDivElement | null>;
@@ -56,7 +56,7 @@ export default function MovingMarker(props: MovingMarkerProps) {
 
         window.addEventListener('scroll', handleWbTimelineOnScroll);
         return () => window.addEventListener('scroll', handleWbTimelineOnScroll);
-    }, [])
+    }, [wbRef])
 
   return (
     <div aria-label="moving-marker" className="w-full h-full pt-1" >

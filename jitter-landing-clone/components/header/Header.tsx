@@ -75,7 +75,7 @@ export default function Header() {
                             </ul>
                         </nav>
                     </div>
-                    <div aria-label='login-btn' className='w-[40%] sm:max-w-[10rem] lg:max-w-full  lg:w-[35%]  xl:pl-[3%] flex justify-center sm:pr-[10%] md:pr-[15%] 2xl:pr-[5%] flex-grow font-inter font-semibold' >
+                    <div aria-label='login-btn' className='w-[40%] sm:max-w-[10rem] lg:max-w-full  lg:w-[35%]  xl:pl-[3%] flex justify-center sm:pr-[10%] md:pr-[17%] 2xl:pr-[5%] flex-grow font-inter font-semibold' >
                         <Link href={'#login'} className='block min-[375px]:ml-5'>
                             Log in
                         </Link>
@@ -119,15 +119,15 @@ export default function Header() {
                 </div>
             </section>
             <section aria-label='header-menu' className='w-full h-0' >
-                <div aria-label='menu-container' className='w-[90%] md:w-[65%] lg:w-[80%] xl:w-[76.3%] xl:pr-[3%] m-auto flex justify-end items-center h-0' >
+                <div aria-label='menu-container' className='w-[90%] md:w-[65%] lg:w-[80%] xl:w-[76.3%] lg:pr-[2%] xl:pr-[3%] m-auto flex justify-end items-center h-0' >
                     <div aria-label='menu-wrapper' className='w-fit translate-y-11 flex items-center' >
-                        <div aria-label='cta-container' className={`w-fit relative z-20 hidden lg:block h-full flex justify-center items-center font-bold text-lg text-white ${!hideMenuBar? 'mr-5' : ''} transition-all duration-300`} >
+                        <div aria-label='cta-container' className={`w-fit relative z-20 hidden lg:flex h-full justify-center items-center font-bold text-lg text-white ${!hideMenuBar? 'mr-5' : ''} transition-all duration-300`} >
                             <Link href={'#try'} className='block w-fit h-fit bg-prim px-7 py-3 rounded-full hover:animate-pulse-grow' >
                                 Try for free
                             </Link>
                         </div>
                         {
-                            (width > 1024) && (
+                            (width >= 1024) && (
                                 <div aria-label='menu-btn-container' className='relative z-10 hidden lg:block' >
                                     <HamBurger {...{ toggle: false, dark: true, mobile: false, setHideContent: sethideMenuBar, setScrollH, hideContent: hideMenuBar }} /> 
                                 </div>

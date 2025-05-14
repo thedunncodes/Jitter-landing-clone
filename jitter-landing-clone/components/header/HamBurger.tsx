@@ -58,7 +58,7 @@ export default function HamBurger(props: hamBurgerProps) {
         return () => {
             window.addEventListener("scroll", handleMenuScrollOutside);
         }
-      }, []);
+      }, [setHideContent, setScrollH]);
 
     useEffect(() => {
         if (lastScrollTop < 200) setScrollH(lastScrollTop)

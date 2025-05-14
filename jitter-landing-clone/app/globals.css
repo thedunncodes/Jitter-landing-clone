@@ -41,8 +41,12 @@
 
   --animate-bounceY-in: bounceY-in 400ms ease-in forwards;
   --animate-bounceY-in-btn: bounceY-m-btn 800ms ease-out forwards;
-  --animate-float: floating 6.5s ease-out infinite;
+  --animate-float: floating 7.5s ease-out infinite;
+  --animate-hs-incr: incr 250ms ease-in-out forwards;
 
+  @keyframes incr {
+    100% { width: 1.65rem }
+}
 
   @keyframes pulse-grow {
       0% { transform: scale(1) }

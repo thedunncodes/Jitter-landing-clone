@@ -34,14 +34,14 @@ export default function SqrEdgeFrame(props: SqrEdgeFrameProps) {
                         <motion.div style={ scrollAnimation? {scale} : {}} aria-label="sqr-edge" className="absolute w-2 h-2 z-3 -top-1 -right-1 border border-prim-alt-dark bg-white " />
                         <motion.div style={ scrollAnimation? {scale} : {}} aria-label="sqr-edge" className="absolute w-2 h-2 z-3 -bottom-1 -left-1 border border-prim-alt-dark bg-white " />
                         <motion.div style={ scrollAnimation? {scale} : {}} aria-label="sqr-edge" className="absolute w-2 h-2 z-3 -bottom-1 -right-1 border border-prim-alt-dark bg-white " />
-                        <motion.div style={ scrollAnimation? {scaleY: 0.05, y: '-50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-full h-1 top-0 bg-prim-alt-dark" />
-                        <motion.div style={ scrollAnimation? {scaleX: 0.05, x: '50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-1 h-full -right-0 bg-prim-alt-dark" />
-                        <motion.div style={ scrollAnimation? {scaleY: 0.05, y: '50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-full h-1 bottom-0 bg-prim-alt-dark" />
-                        <motion.div style={ scrollAnimation? {scaleX: 0.05, x: '-50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-1 h-full -left-0 bg-prim-alt-dark" />
                     </>
                 )
             }
-            <div aria-label="sqr-edge-content" style={{ outline: "0px solid blue" }} className="z-2 flex items-center justify-center w-fit h-auto m-aut" >
+            <motion.div style={ scrollAnimation? {scaleY: 0.03, y: '-50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-full h-1 top-0 bg-prim-alt-dark" />
+            <motion.div style={ scrollAnimation? {scaleX: 0.03, x: '50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-1 h-full -right-0 bg-prim-alt-dark" />
+            <motion.div style={ scrollAnimation? {scaleY: 0.03, y: '50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-full h-1 bottom-0 bg-prim-alt-dark" />
+            <motion.div style={ scrollAnimation? {scaleX: 0.03, x: '-50%'} : {}} aria-label="sqr-border" className="absolute z-1 w-1 h-full -left-0 bg-prim-alt-dark" />
+            <div aria-label="sqr-edge-content" style={{ outline: "0px solid blue" }} className="z-2 flex items-center justify-center w-fit h-fit" >
                 {children}
             </div>
         </div>

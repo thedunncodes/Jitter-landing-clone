@@ -24,6 +24,7 @@ export default function ParallaxZoom() {
     })
 
     const containerScale = useTransform(scrollYProgress, [0, 0.5], [1, 4]);
+    const mobileCntScale = useTransform(scrollYProgress, [0, 0.5], [1, 2.5]);
     const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
     const containerY = useTransform(scrollYProgress, [0, 0.5], ["0%", "30%"]);
     const tslUp = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
@@ -35,13 +36,15 @@ export default function ParallaxZoom() {
     const hzContentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.96]);
     const hzContentTslY = useTransform(scrollYProgress, [0.25, 5], ["0%", "15%"]);
     const containerBorder = useTransform(scrollYProgress, [0.7, 1], ['0rem', '5rem']);
+    const mobileCntBorder = useTransform(scrollYProgress, [0.7, 1], ['0rem', '3rem']);
+    const containerWidth = useTransform(scrollYProgress, [0.8, 1], ["100%", "96%"] );
 
     
 
     return (
-        <section aria-label='parallax-zoom-container' ref={containerRef} className={`${(vpWidth >= 1024) ? 'min-h-[600dvh]' : 'h-fit'} w-full relative border border-cyan-800 `} >
-            <motion.div aria-label='zoom-wrapper' style={{ borderEndEndRadius: containerBorder, borderEndStartRadius: containerBorder }} className='w-full sticky overflow-hidden top-0 flex justify-center items-center border py-[3%] h-[100dvh]' >
-                <motion.div style={{scale: ((vpWidth >= 1024) ? containerScale : undefined ), y: containerY}} aria-label='whiteboard-container' ref={wbRef} className='w-[70%] m-auto overflow-hidd en' >
+        <section aria-label='parallax-zoom-container' ref={containerRef} className={`border h-[500dvh] lg:min-h-[600dvh] w-full relative `} >
+            <motion.div aria-label='zoom-wrapper' style={ (vpWidth >= 1024) ? { width: containerWidth, borderEndEndRadius: containerBorder, borderEndStartRadius: containerBorder } : {}} className='w-full lg:sticky top-0 overflow-hidden m-auto flex justify-center items-center py-[3%] h-[100dvh]' >
+                <motion.div style={(vpWidth >= 1024) ? {scale: containerScale, y: containerY} : {}} aria-label='whiteboard-container' ref={wbRef} className='w-[70%] m-auto overflow-hidden' >
                     <div aria-label='whiteboard-wrapper' className='w-full h-full shadow-3xl' >
                         <div aria-label='whiteboard-top' className='w-full h-fit' >
                             <div aria-label='whiteboard-top-wrapper' className='flex flex-wrap bg-black justify-between' >
@@ -69,67 +72,71 @@ export default function ParallaxZoom() {
                                             </video>
                                         </SqrEdgeFrame>
                                     </div>
-                                    <motion.div aria-label='horizontal-scroll-container' style={{y: undefined}} className='relative h-full overdflow-hidden w-full bsorder-2 border-prim-alt-dark' >
-                                        <motion.div aria-label='horizontal-scroll-container' style={{scale: ((vpWidth >= 1024) ? contentScale : undefined )}} className='sticky top-0 w-fit h-full bg-redd-600 flex justify-center items-center' >
-                                            <div aria-label='horizontal-scroll-wrapper' className='w-[70%] grid grid-cols-3 grid-rows-3' >
-                                                <motion.div aria-label='scroll-bg-content1' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-0.mp4' type='video/mp4' />
-                                                    </video>
+                                    {
+                                        (vpWidth >= 1024) && (
+                                            <motion.div aria-label='horizontal-scroll-container' style={{y: undefined}} className='relative h-full hidden lg:block overdflow-hidden w-full bsorder-2 border-prim-alt-dark' >
+                                                <motion.div aria-label='horizontal-scroll-container' style={{scale: ((vpWidth >= 1024) ? contentScale : undefined )}} className='sticky top-0 w-fit h-full bg-redd-600 flex justify-center items-center' >
+                                                    <div aria-label='horizontal-scroll-wrapper' className='w-[70%] grid grid-cols-3 grid-rows-3' >
+                                                        <motion.div aria-label='scroll-bg-content1' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-0.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content2' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-0.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content3' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-2.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content4' style={{ x: tslLeft }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-1.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content5' style={{ scaleX: hzContentScaleX, scaleY: hzContentScaleY, y: hzContentTslY }} className='w-full border h-full flex justify-center items-center' >
+                                                                {/* <Image 
+                                                                    src={'https://assets.jitter.video/horizontal-scroll/compressed_hs-2-1.webp'}
+                                                                    alt=''
+                                                                    width={500}
+                                                                    height={500}
+                                                                    className=''
+                                                                />
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-1.mp4' type='video/mp4' />
+                                                            </video> */}
+                                                            <motion.div style={{scaleX: hzContentScale}} className='w-full h-full flex justify-center items-center' >
+                                                                <HorizontalScroll {...{scrollYProgress}} />
+                                                            </motion.div>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content6' style={{ x: tslRight }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-2.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content7' style={{ y: tslDown }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-3-0.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content8' style={{ y: tslDown }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-3-1.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                        <motion.div aria-label='scroll-bg-content9' style={{ y: tslDown }} className='w-full h-full flex justify-center items-center p-3' >
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-3-2.mp4' type='video/mp4' />
+                                                            </video>
+                                                        </motion.div>
+                                                    </div>
                                                 </motion.div>
-                                                <motion.div aria-label='scroll-bg-content2' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-0.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content3' style={{ y: tslUp }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-2.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content4' style={{ x: tslLeft }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-1.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content5' style={{ scaleX: hzContentScaleX, scaleY: hzContentScaleY, y: hzContentTslY }} className='w-full border h-full flex justify-center items-center' >
-                                                        {/* <Image 
-                                                            src={'https://assets.jitter.video/horizontal-scroll/compressed_hs-2-1.webp'}
-                                                            alt=''
-                                                            width={500}
-                                                            height={500}
-                                                            className=''
-                                                        />
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-1.mp4' type='video/mp4' />
-                                                    </video> */}
-                                                    <motion.div style={{scaleX: hzContentScale}} className='w-full h-full flex justify-center items-center' >
-                                                        <HorizontalScroll {...{scrollYProgress}} />
-                                                    </motion.div>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content6' style={{ x: tslRight }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-2.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content7' style={{ y: tslDown }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-3-0.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content8' style={{ y: tslDown }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-3-1.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                                <motion.div aria-label='scroll-bg-content9' style={{ y: tslDown }} className='w-full h-full flex justify-center items-center p-3' >
-                                                    <video autoPlay loop muted playsInline>
-                                                        <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-3-2.mp4' type='video/mp4' />
-                                                    </video>
-                                                </motion.div>
-                                            </div>
-                                        </motion.div>
-                                    </motion.div>
+                                            </motion.div>
+                                        )
+                                    }
                                 </div>
                                 <div className='w-[13%] flex items-start' >
                                     <WbMiddleRight {...{className : 'w-full h-fit '}} />
@@ -156,6 +163,19 @@ export default function ParallaxZoom() {
                     </div>
                 </motion.div>
             </motion.div>
+            {
+                (vpWidth < 1024) && (
+                    <motion.div aria-label='mobile-horizontal-scroll' style={{ width: containerWidth, borderEndEndRadius: mobileCntBorder, borderEndStartRadius: mobileCntBorder }} className='w-full sticky top-0 bg-prim-alt overflow-hidden m-auto flex justify-center items-center py-[3%] h-[100dvh]' >
+                        <motion.div aria-label='mobile-horizontal-scroll-container' style={{scale: mobileCntScale}} className='w-full h-full bg-sec m-auto overflow-hiddens' >
+                            <div aria-label='mobile-horizontal-scroll-wrapper' className='w-full h-full flex items-center justify-center' >
+                                <motion.div style={{scaleX: undefined }} className='w-full h-[40%] flex justify-center items-center box-border' >
+                                    <HorizontalScroll {...{scrollYProgress}} />
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )
+            }
         </section>
     );
 }

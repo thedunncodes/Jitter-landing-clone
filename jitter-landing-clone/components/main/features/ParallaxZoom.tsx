@@ -23,30 +23,32 @@ export default function ParallaxZoom() {
 
     })
 
-    const containerScale = useTransform(scrollYProgress, [0, 0.5], [1, 4]);
+    const containerScale = useTransform(scrollYProgress, [0, 0.5], [1, 5]);
     const mobileCntScale = useTransform(scrollYProgress, [0, 0.5], [1, 2.5]);
     const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
-    const containerY = useTransform(scrollYProgress, [0, 0.5], ["0%", "30%"]);
-    const tslUp = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
-    const tslDown = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
-    const tslLeft = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
-    const tslRight = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+    const containerY = useTransform(scrollYProgress, [0, 0.5], ["0%", "37%"]);
+    const tslUp = useTransform(scrollYProgress, [0, 0.5], ["0%", "-75%"]);
+    const tslDown = useTransform(scrollYProgress, [0, 0.5], ["0%", "75%"]);
+    const tslLeft = useTransform(scrollYProgress, [0, 0.5], ["0%", "-75%"]);
+    const tslRight = useTransform(scrollYProgress, [0, 0.5], ["0%", "75%"]);
     const hzContentScaleX = useTransform(scrollYProgress, [0, 0.5], [1, 2]);
     const hzContentScaleY = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
     const hzContentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.96]);
-    const hzContentTslY = useTransform(scrollYProgress, [0.25, 5], ["0%", "15%"]);
-    const containerBorder = useTransform(scrollYProgress, [0.7, 1], ['0rem', '5rem']);
-    const mobileCntBorder = useTransform(scrollYProgress, [0.7, 1], ['0rem', '3rem']);
-    const containerWidth = useTransform(scrollYProgress, [0.8, 1], ["100%", "96%"] );
-
+    const hzContentTslY = useTransform(scrollYProgress, [0.25, 0.5], ["0%", "2%"]);
+    const containerBorder = useTransform(scrollYProgress, [0.95, 1.02], ['0rem', '7rem']);
+    const mobileCntBorder = useTransform(scrollYProgress, [0.95, 1.02], ['0rem', '5rem']);
+    const containerWidth = useTransform(scrollYProgress, [0.98, 1.01], ["100%", "95%"] );
+    const bg = useTransform(scrollYProgress, [0.49, 0.5], ["#FFFFFF00", "#f1f1f1"] );
+    const hsBg = useTransform(scrollYProgress, [0.49, 0.5], ["#f1f1f1", "#FFFFFF00"] );
     
 
     return (
-        <section aria-label='parallax-zoom-container' ref={containerRef} className={`border h-[500dvh] lg:min-h-[600dvh] w-full relative `} >
-            <motion.div aria-label='zoom-wrapper' style={ (vpWidth >= 1024) ? { width: containerWidth, borderEndEndRadius: containerBorder, borderEndStartRadius: containerBorder } : {}} className='w-full lg:sticky top-0 overflow-hidden m-auto flex justify-center items-center py-[3%] h-[100dvh]' >
-                <motion.div style={(vpWidth >= 1024) ? {scale: containerScale, y: containerY} : {}} aria-label='whiteboard-container' ref={wbRef} className='w-[70%] m-auto overflow-hidden' >
-                    <div aria-label='whiteboard-wrapper' className='w-full h-full shadow-3xl' >
-                        <div aria-label='whiteboard-top' className='w-full h-fit' >
+        <section aria-label='parallax-zoom-container' ref={containerRef} className={`h-[500dvh] lg:min-h-[600dvh] w-full relative `} >
+            <motion.div style={{background: bg, width: containerWidth, borderEndEndRadius: (vpWidth >= 1024) ? containerBorder : mobileCntBorder, borderEndStartRadius: (vpWidth >= 1024) ? containerBorder : mobileCntBorder}} className="shadow-around border-x border-b border-slate-300/75 w-full h-full absolute left-[50%] translate-x-[-50%] z-0" />
+            <motion.div aria-label='zoom-wrapper' style={ (vpWidth >= 1024) ? { width: undefined, borderEndEndRadius: undefined, borderEndStartRadius: undefined } : {}} className='w-full lg:sticky top-0 z-2 overflow-hidden m-auto flex justify-center items-center py-[3%] h-[100dvh] transition-all duration-400' >
+                <motion.div style={(vpWidth >= 1024) ? {scale: containerScale, y: containerY} : {}} aria-label='whiteboard-container' ref={wbRef} className='w-[85%] md:w-[65%] lg:w-[70%] m-auto overflow-hiddden' >
+                    <div aria-label='whiteboard-wrapper' style={{ boxShadow: 'rgba(49, 49, 49, 0.25) 0px 54px 55px, rgba(49, 49, 49, 0.12) 0px -12px 30px, rgba(49, 49, 49, 0.12) 0px 4px 6px, rgba(49, 49, 49, 0.17) 0px 12px 13px, rgba(49, 49, 49, 0.09) 0px -3px 5px' }} className='w-full h-full' >
+                        <div aria-label='whiteboard-top' className='w-full h-fit relative z-2' >
                             <div aria-label='whiteboard-top-wrapper' className='flex flex-wrap bg-black justify-between' >
                                 <div className='flex w-[17%]' >
                                     <svg viewBox="0 0 335 48" className='w-full -[17%]' fill="none" xmlns="http://www.w3.org/2000/svg" data-sentry-element="FrameHeaderToolsSVG" data-sentry-source-file="HorizontalScrollSection.tsx"><path fillRule="evenodd" clipRule="evenodd" d="m23.414 25 3.293 3.293-1.414 1.414L19.586 24l5.707-5.707 1.414 1.414L23.414 23H35v2H23.414ZM302 17l12-3v15a3 3 0 1 1-2-2.83V18l-8 2v11a3 3 0 1 1-2-2.83V17Z" fill="#fff"></path><path d="M76 18v-2h14v4h-2v-2h-4v12h2v2h-6v-2h2V18h-4v2h-2v-2Z" fill="#fff"></path><path fillRule="evenodd" clipRule="evenodd" d="M148 16h-18v16h18V16Zm-2 2h-14v12h14V18Z" fill="#fff"></path><circle cx="195" cy="24" r="7" stroke="#fff" strokeWidth="2"></circle><path fillRule="evenodd" clipRule="evenodd" d="M260 16h-18v16h18V16Zm-2 2h-14v9l3-3 5 5 3-3 3 3V18Z" fill="#fff"></path><path d="M256 22a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" fill="#fff"></path></svg>
@@ -59,12 +61,12 @@ export default function ParallaxZoom() {
                                 </div>
                             </div>
                         </div>
-                        <div aria-label='whiteboard-middle' className='w-full' >
+                        <div aria-label='whiteboard-middle' className='relative z-1 w-full' >
                             <div aria-label='whiteboard-middle-wrapper' className='flex flex-wrap justify-between' >
                                 <div className='w-[13%] flex items-start' >
                                     <WbMiddleLeft {...{className : 'w-full h-fit '}} />
                                 </div>
-                                <div className='w-[74%] flex items-center justify-center bg-sec' >
+                                <motion.div style={{ background: hsBg }} className='w-[74%] flex items-center justify-center bg-sec' >
                                     <div className='flex w-[70%] lg:hidden' >
                                         <SqrEdgeFrame sqrEdge={false} scrollAnimation={false} >
                                             <video autoPlay loop muted playsInline>
@@ -97,17 +99,7 @@ export default function ParallaxZoom() {
                                                                 <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-1-1.mp4' type='video/mp4' />
                                                             </video>
                                                         </motion.div>
-                                                        <motion.div aria-label='scroll-bg-content5' style={{ scaleX: hzContentScaleX, scaleY: hzContentScaleY, y: hzContentTslY }} className='w-full border h-full flex justify-center items-center' >
-                                                                {/* <Image 
-                                                                    src={'https://assets.jitter.video/horizontal-scroll/compressed_hs-2-1.webp'}
-                                                                    alt=''
-                                                                    width={500}
-                                                                    height={500}
-                                                                    className=''
-                                                                />
-                                                            <video autoPlay loop muted playsInline>
-                                                                <source src='https://assets.jitter.video/horizontal-scroll/compressed_hs-2-1.mp4' type='video/mp4' />
-                                                            </video> */}
+                                                        <motion.div aria-label='scroll-bg-content5' style={{ scaleX: hzContentScaleX, scaleY: hzContentScaleY, y: hzContentTslY }} className='w-full h-full flex justify-center items-center' >
                                                             <motion.div style={{scaleX: hzContentScale}} className='w-full h-full flex justify-center items-center' >
                                                                 <HorizontalScroll {...{scrollYProgress}} />
                                                             </motion.div>
@@ -137,24 +129,24 @@ export default function ParallaxZoom() {
                                             </motion.div>
                                         )
                                     }
-                                </div>
+                                </motion.div>
                                 <div className='w-[13%] flex items-start' >
                                     <WbMiddleRight {...{className : 'w-full h-fit '}} />
                                 </div>
                             </div>
                         </div>
-                        <div aria-label='whiteboard-end' className='w-full' >
+                        <div aria-label='whiteboard-end' className='w-full relative z-4' >
                             <div aria-label='whiteboard-end-wrapper' className='flex justify-between w-full' >
                                 <div aria-label='whiteboard-end-content1' className='w-[13%]' >
                                     <WbEndLeft {...{className : 'w-full h-full '}} />
                                 </div>
-                                <div className='w-[87%] grow fl relative' >
+                                <div className='w-[87%] grow relative bg-background' >
                                     <div aria-label='whiteboard-end-marker' className='absolute left-0 top-0 w-full h-full' >
                                         <div aria-label='marker-wrapper' className='w-full bsg-slate-800 h-full' >
                                             <MovingMarker {...{ wbRef, timeBgRef: timeBackgroundRef }} />
                                         </div>
                                     </div>
-                                    <div aria-label='whiteboard-end-content2' ref={timeBackgroundRef} >
+                                    <div aria-label='whiteboard-end-content2' ref={timeBackgroundRef}>
                                         <WbEndRight {...{className : 'w-full ml-[0.5px] h-full '}} />
                                     </div>
                                 </div>
@@ -165,8 +157,8 @@ export default function ParallaxZoom() {
             </motion.div>
             {
                 (vpWidth < 1024) && (
-                    <motion.div aria-label='mobile-horizontal-scroll' style={{ width: containerWidth, borderEndEndRadius: mobileCntBorder, borderEndStartRadius: mobileCntBorder }} className='w-full sticky top-0 bg-prim-alt overflow-hidden m-auto flex justify-center items-center py-[3%] h-[100dvh]' >
-                        <motion.div aria-label='mobile-horizontal-scroll-container' style={{scale: mobileCntScale}} className='w-full h-full bg-sec m-auto overflow-hiddens' >
+                    <motion.div aria-label='mobile-horizontal-scroll'  className='w-full sticky top-0 z-2 bg-transparent overflow-hidden m-auto flex justify-center items-center py-[3%] h-[100dvh]' >
+                        <motion.div aria-label='mobile-horizontal-scroll-container' style={{scale: mobileCntScale, background: hsBg}} className='w-full h-full bg-sec m-auto overflow-hiddens' >
                             <div aria-label='mobile-horizontal-scroll-wrapper' className='w-full h-full flex items-center justify-center' >
                                 <motion.div style={{scaleX: undefined }} className='w-full h-[40%] flex justify-center items-center box-border' >
                                     <HorizontalScroll {...{scrollYProgress}} />

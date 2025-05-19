@@ -24,7 +24,6 @@ export default function MovingMarker(props: MovingMarkerProps) {
                     limit: ((timeBgRef.current?.offsetWidth ?? 0) / 16) || 46
                 })
             )
-            console.log(timeBgRef.current.offsetWidth);
         }
     }, [timeBgRef, timeBgRef.current?.offsetWidth])
 
@@ -32,7 +31,7 @@ export default function MovingMarker(props: MovingMarkerProps) {
         setMovement(
             prevState => ({
                 ...prevState,
-                position: Number(timeline) * (((timeBgRef.current?.offsetWidth ?? 0) / 4.1) / 16)
+                position: Number(timeline) * (((timeBgRef.current?.offsetWidth ?? 0) / 4.2) / 16)
             })
         )
     }, [timeline, timeBgRef])

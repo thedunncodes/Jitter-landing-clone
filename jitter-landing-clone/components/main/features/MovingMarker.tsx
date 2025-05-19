@@ -59,12 +59,12 @@ export default function MovingMarker(props: MovingMarkerProps) {
     }, [wbRef])
 
   return (
-    <div aria-label="moving-marker" className="w-full h-full pt-1" >
+    <div aria-label="moving-marker" className="w-full h-full pt-[1px] sm:pt-0.5 lg:pt-1" >
         <div aria-label="moving-marker-wrapper"
             style={{ transform: `translateX(${(movement.position > movement.limit) ? movement.limit : movement.position}rem)`, transition: "transform 0.3s ease-out" }}
             className={`w-fit min-w-[4%] h-full flex flex-col items-center transition-all duration-200 `}
          >
-            <div aria-label="timeline" className="bg-red-500 w-full text-white text-center text-[0.25rem] xl:text-[0.35rem] px-1.5 font-inter font-bold py-0.5 rounded-full" >
+            <div aria-label="timeline" className="bg-red-500 w-full text-white text-center text-[0.25rem] sm:text-[0.33rem] lg:text-[0.35rem] px-1.5 py-[1px] lg:py-0.5 font-inter font-bold rounded-full" >
                 {timeline}
             </div>
             <div aria-label="timeline-stick" className="bg-red-500 w-[0.5px] grow" ></div>

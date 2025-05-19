@@ -34,13 +34,13 @@ export default function AnimatedText() {
     }, []);
 
     return (
-        <section ref={containerRef} className="w-[80%] text-[2.25rem] h-full leading-11 font-bold relative flex gap-x-1.5 flex-wrap" >
+        <section ref={containerRef} className="w-full sm:w-[80%] lg:w-[77%] xl:w-[80%] text-3xl md:text-4xl xl:text-[2.25rem] h-full leading-8.5 sm:leading-11 font-bold max-sm:font-extrabold relative flex gap-x-1.5 flex-wrap" >
             { 
                 scrollText.map((item, index) => {
                     return (
                         <span key={index} className={`
                             ${ (VisiblePct >= (Math.floor(100 / scrollText.length) * (index + 1))) ? 'opacity-100' : 'opacity-30' }
-                            transition-all duration-100
+                            transition-all duration-100 max-sm:scale-y-110  text-prim
                         `} >
                             {item}
                         </span>
